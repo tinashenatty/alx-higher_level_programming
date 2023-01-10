@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-import hidden_4
-
-
-def main():
-    l = dir(hidden_4)
-    for i in range(len(l)):
-        if(l[i][0] != '_'):
-            print("{}".format(l[i]))
+# 4-hidden_discovery.py
 
 if __name__ == "__main__":
-    main()
+    """Print all names defined by hidden_4 module."""
+    import hidden_4
+
+    names = dir(hidden_4)
+    for name in names:
+        if name[:2] != "__":
+            print(name)
