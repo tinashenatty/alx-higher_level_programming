@@ -1,29 +1,26 @@
 #!/usr/bin/python3
-"""defines function to scalar divde matrix"""
+"""Matrix division"""
 
 
 def matrix_divided(matrix, div):
-    """divides matrix by scalar integer, rounded to two decimal places"""
-    import decimal
-    error_msg = "matrix must be a matrix (list of lists) of integers/floats"
-    if type(matrix) is not list:
-        raise TypeError(error_msg)
-    len_rows = []
-    row_count = 0
-    for row in matrix:
-        if type(row) is not list:
-            raise TypeError(error_msg)
-        len_rows.append(len(row))
-        for element in row:
-            if type(element) not in [int, float]:
-                raise TypeError(error_msg)
-        row_count += 1
-    if len(set(len_rows)) > 1:
-        raise TypeError("Each row of the matrix must have the same size")
+    """Divides every element of a matrix
+    Args:
+        matrix (list): A list of lists of integers
+        or floats div (int/float): The divisor.
+    """
+
     if type(div) not in [int, float]:
         raise TypeError("div must be a number")
-    if int(div) == 0:
-        raise ZeroDivisionError("division by zero")
-    new_matrix = list(map(lambda row:
-                          list(map(lambda x: round(x/div, 2), row)), matrix))
+    if div == 0:
+        raise ZeroDivisionError(
+            "Each row of the matrix must have the same size")
+
+    if not all(len(row) == len(matrix[0]) for row in matrix):
+        raise TypeError("Each row of the matrix must have the same size")
+    if not all(type(num) in [int, float] for row in matrix for num in row):
+        raise TypeError("matrix must be a matrix (list of lists)"
+                        " of integers/floats")
+
+    new_matrix = [[eval("{:.2f}".format(num / div)) for num in row]
+                  for row in matrix]
     return new_matrix
