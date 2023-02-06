@@ -1,13 +1,10 @@
 #!/usr/bin/python3
-"""Module containing the ``lookup`` function definition.
-"""
+"""Author: Kanneh"""
 
 
 def lookup(obj):
-    """Definition of ``lookup`` function.
-    Args:
-        obj (object): parameter of any type
-    Returns:
-        dir(obj)
+    """A function that returns the list of available
+    attributes and methods of an object
+    Returns a list object
     """
     return dir(obj)
