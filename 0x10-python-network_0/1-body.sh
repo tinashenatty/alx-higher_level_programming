@@ -1,3 +1,3 @@
 #!/bin/bash
-# displays the body of the response
-curl -sL -w "%{http_code}" -o /dev/null "$1" | [ "$(cat)" = "200" ] && curl -sL "$1"
+# Get the response body for a given URL for 200 status code responses.
+curl -sL "$1"
